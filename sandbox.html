@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-sandl&aring;da f&ouml;r m&auml;klarbyr&aring;er</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #411B38;
+            background: #FFF6F0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #FFF6F0 0%, #FFE8E0 100%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.07;
+            letter-spacing: -0.005em;
+            margin-bottom: 12px;
+            color: #411B38;
+        }
+
+        .hero .subtitle {
+            font-size: 28px;
+            line-height: 1.2;
+            font-weight: 400;
+            color: #7A4864;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.003em;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #411B38;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #411B38;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            font-size: 17px;
+            line-height: 1.6;
+            padding: 12px 0;
+            color: #411B38;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .card li:before {
+            content: "\2022";
+            font-size: 20px;
+            margin-right: 12px;
+            color: #C87C5C;
+            font-weight: 600;
+        }
+
+        .download-hero {
+            text-align: center;
+            padding: 80px 22px;
+            background: linear-gradient(135deg, #411B38 0%, #5A2E48 100%);
+            border-radius: 18px;
+            margin: 40px 0;
+        }
+
+        .download-hero h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .download-hero p {
+            font-size: 21px;
+            color: #FFE8E0;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #C87C5C;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #D68D6C;
+            transform: scale(1.02);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid #411B38;
+            padding: 12px 32px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #411B38;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn.active {
+            background: #411B38;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .steps {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .steps h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #411B38;
+        }
+
+        .step {
+            margin-bottom: 32px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #C87C5C 0%, #D68D6C 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 16px;
+        }
+
+        .step-content {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(100% - 56px);
+        }
+
+        .step-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #411B38;
+        }
+
+        .step-description {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #7A4864;
+        }
+
+        .step-description a {
+            color: #C87C5C;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .step-description a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: #FFF6F0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 12px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #411B38;
+            overflow-x: auto;
+            border: 1px solid rgba(65, 27, 56, 0.1);
+        }
+
+        .note-box {
+            background: #FFF6F0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #411B38;
+            border-left: 4px solid #C87C5C;
+        }
+
+        .note-box strong {
+            font-weight: 600;
+            color: #411B38;
+        }
+
+        .examples {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            margin-top: 32px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .examples h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #411B38;
+        }
+
+        .examples ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .examples li {
+            font-size: 17px;
+            line-height: 1.6;
+            padding: 16px 0;
+            color: #411B38;
+            border-bottom: 1px solid #FFF6F0;
+        }
+
+        .examples li:last-child {
+            border-bottom: none;
+        }
+
+        .examples li:before {
+            content: "\2192";
+            margin-right: 12px;
+            color: #C87C5C;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 22px;
+            background: linear-gradient(135deg, #411B38 0%, #5A2E48 100%);
+            margin-top: 60px;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #FFE8E0;
+            margin-bottom: 8px;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero .subtitle {
+                font-size: 21px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .card, .steps, .examples {
+                padding: 32px 24px;
+            }
+
+            .download-hero {
+                padding: 48px 24px;
+            }
+
+            .download-hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>AI-sandl&aring;da f&ouml;r m&auml;klarbyr&aring;er</h1>
+        <p class="subtitle">Material och instruktioner</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="card">
+                <h3>Demofiler f&ouml;r Claude Project</h3>
+                <ul>
+                    <li>5 realistiska veckorapporter fr&aring;n m&auml;klare</li>
+                    <li>F&ouml;rmedlingsdata och nyckeltal (antal visningar, budgivningar, s&aring;lda objekt)</li>
+                    <li>Kontorsriktlinjer och marknadsf&ouml;ringspolicy</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Material</h3>
+                <ul>
+                    <li>Arbetsbok f&ouml;r individuell kartl&auml;ggning (efter workshopen)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="download-hero">
+            <h2>H&auml;mta alla filer</h2>
+            <p>Komplett paket med demofiler och arbetsbok</p>
+            <a href="workshop_material_maklare.zip" class="btn-primary" download>Ladda ner material</a>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Kom ig&aring;ng</h2>
+            <p style="text-align: center; font-size: 19px; color: #7A4864; margin-bottom: 40px;">
+                V&auml;lj det verktyg du f&ouml;redrar &ndash; alla fungerar lika bra
+            </p>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('claude')">Claude</button>
+                <button class="tab-btn" onclick="showTab('chatgpt')">ChatGPT</button>
+                <button class="tab-btn" onclick="showTab('copilot')">Microsoft Copilot</button>
+            </div>
+
+            <div id="claude-tab" class="tab-content active">
+                <div class="steps">
+                    <h3>S&aring; h&auml;r anv&auml;nder du Claude Projects</h3>
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Skapa konto</div>
+                            <div class="step-description">
+                                G&aring; till <a href="https://claude.ai" target="_blank">claude.ai</a> och skapa ett gratis konto
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Skapa Project</div>
+                            <div class="step-description">
+                                Klicka p&aring; &quot;Projects&quot; i v&auml;nstermenyn &rarr; &quot;Create Project&quot; &rarr; Namnge det t.ex. &quot;M&auml;klarbyr&aring; AI-assistent&quot;
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Ladda upp filer</div>
+                            <div class="step-description">
+                                Klicka &quot;Add Content&quot; och ladda upp alla 5 veckorapporter, f&ouml;rmedlingsdata och kontorsriktlinjer
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Custom Instructions</div>
+                            <div class="step-description">
+                                Klicka p&aring; &quot;Set custom instructions&quot; och skriv:
+                            </div>
+                            <div class="code-block">
+"Du &auml;r en AI-agent som hj&auml;lper mig som kontorschef/marknadschef p&aring; en m&auml;klarbyr&aring; att analysera veckorapporter fr&aring;n mina m&auml;klare. N&auml;r jag fr&aring;gar dig ska du: 1) L&auml;sa alla tillg&auml;ngliga rapporter och f&ouml;rmedlingsdata, 2) Identifiera m&ouml;nster i f&ouml;rs&auml;ljning, visningar och kundaktivitet, 3) Prioritera vad som beh&ouml;ver min uppm&auml;rksamhet, 4) F&ouml;resl&aring; konkreta &aring;tg&auml;rder och uppf&ouml;ljningsfr&aring;gor, 5) Basera svar p&aring; b&aring;de marknadsdata och kontorsriktlinjer. Var koncis men insiktsfull."
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <div class="step-title">St&auml;ll din f&ouml;rsta fr&aring;ga</div>
+                            <div class="step-description">
+                                Testa t.ex. &quot;Vad beh&ouml;ver min omedelbara uppm&auml;rksamhet som kontorschef denna vecka?&quot;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chatgpt-tab" class="tab-content">
+                <div class="steps">
+                    <h3>S&aring; h&auml;r anv&auml;nder du ChatGPT</h3>
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Skapa konto</div>
+                            <div class="step-description">
+                                G&aring; till <a href="https://chat.openai.com" target="_blank">chat.openai.com</a> och skapa ett gratis konto
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Starta ny chatt</div>
+                            <div class="step-description">
+                                Klicka p&aring; &quot;New chat&quot; (ChatGPT Plus-anv&auml;ndare kan skapa ett &quot;Project&quot;)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Ladda upp filer</div>
+                            <div class="step-description">
+                                Klicka p&aring; papperskl&auml;mman och ladda upp alla 5 veckorapporter, f&ouml;rmedlingsdata och kontorsriktlinjer
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Ge instruktioner</div>
+                            <div class="step-description">
+                                B&ouml;rja chatten med f&ouml;ljande meddelande:
+                            </div>
+                            <div class="code-block">
+"Jag har laddat upp veckorapporter fr&aring;n mina m&auml;klare, f&ouml;rmedlingsdata och kontorsriktlinjer. Du &auml;r min AI-assistent som kontorschef p&aring; en m&auml;klarbyr&aring;. N&auml;r jag st&auml;ller fr&aring;gor ska du: 1) Analysera alla relevanta dokument, 2) Identifiera m&ouml;nster i f&ouml;rs&auml;ljning, visningar och marknadsaktivitet, 3) Ge konkreta handlingsbara f&ouml;rslag, 4) Vara koncis men insiktsfull. Bekr&auml;fta att du f&ouml;rst&aring;r uppdraget."
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <div class="step-title">St&auml;ll din f&ouml;rsta fr&aring;ga</div>
+                            <div class="step-description">
+                                N&auml;r ChatGPT bekr&auml;ftat, testa t.ex. &quot;Vad beh&ouml;ver min omedelbara uppm&auml;rksamhet som kontorschef denna vecka?&quot;
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Tips f&ouml;r ChatGPT Plus-anv&auml;ndare:</strong> Ni kan skapa ett &quot;Project&quot; (liknande Claude) som sparar kontext mellan sessioner. G&aring; till &quot;Explore GPTs&quot; &rarr; &quot;Create&quot; &rarr; Ladda upp filer och l&auml;gg in instruktionerna d&auml;r.
+                    </div>
+                </div>
+            </div>
+
+            <div id="copilot-tab" class="tab-content">
+                <div class="steps">
+                    <h3>S&aring; h&auml;r anv&auml;nder du Microsoft Copilot</h3>
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Kontrollera tillg&aring;ng</div>
+                            <div class="step-description">
+                                Copilot ing&aring;r i vissa Microsoft 365-prenumerationer. Kontrollera med er IT-avdelning om ni har tillg&aring;ng. G&aring; till <a href="https://copilot.microsoft.com" target="_blank">copilot.microsoft.com</a> eller anv&auml;nd Copilot direkt i Word/Teams. <strong>Rekommenderat:</strong> Om tillg&auml;ngligt, v&auml;lj &quot;Office Agent (frontier)&quot; f&ouml;r b&auml;sta prestanda
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <div class="step-title">V&auml;lj arbetsyta</div>
+                            <div class="step-description">
+                                &Ouml;ppna Copilot i Microsoft 365 (via Teams, Word, eller webbversionen). Starta en ny konversation
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Ladda upp filer</div>
+                            <div class="step-description">
+                                I Copilot-chatten, klicka p&aring; papperskl&auml;mman eller dra och sl&auml;pp filerna: alla 5 veckorapporter, f&ouml;rmedlingsdata och kontorsriktlinjer. Observera: Vissa versioner av Copilot har begr&auml;nsningar p&aring; antalet filer
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Ge instruktioner</div>
+                            <div class="step-description">
+                                Skriv f&ouml;ljande i chatten:
+                            </div>
+                            <div class="code-block">
+"Jag har laddat upp veckorapporter fr&aring;n mina m&auml;klare, f&ouml;rmedlingsdata och kontorsriktlinjer. Du &auml;r min AI-assistent som kontorschef p&aring; en m&auml;klarbyr&aring;. N&auml;r jag st&auml;ller fr&aring;gor ska du: 1) Analysera alla relevanta dokument, 2) Identifiera m&ouml;nster i f&ouml;rs&auml;ljning, visningar och marknadsaktivitet, 3) Ge konkreta handlingsbara f&ouml;rslag, 4) Vara koncis men insiktsfull. Bekr&auml;fta att du f&ouml;rst&aring;r uppdraget."
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <div class="step-title">St&auml;ll din f&ouml;rsta fr&aring;ga</div>
+                            <div class="step-description">
+                                N&auml;r Copilot bekr&auml;ftat, testa t.ex. &quot;Vad beh&ouml;ver min omedelbara uppm&auml;rksamhet som kontorschef denna vecka?&quot;
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>F&ouml;rdel med Copilot:</strong> Om ni redan anv&auml;nder Microsoft 365 &auml;r Copilot integrerat med era befintliga verktyg (Teams, Outlook, Word, Excel). Data stannar inom ert Microsoft-ekosystem vilket kan underl&auml;tta GDPR-hantering.
+                        <br><br>
+                        <strong>Office Agent (frontier):</strong> Microsofts nyaste och mest kraftfulla AI-modell. Om du har tillg&aring;ng till denna version rekommenderas den starkt f&ouml;r komplexa analysuppgifter. V&auml;lj Office Agent fr&aring;n modellv&auml;ljaren om tillg&auml;ngligt.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Exempel-fr&aring;gor att testa</h2>
+            <p style="text-align: center; font-size: 19px; color: #7A4864; margin-bottom: 40px;">
+                B&ouml;rja enkelt och bygg vidare &ndash; h&auml;r &auml;r fr&aring;gor uppdelade efter komplexitet
+            </p>
+
+            <div class="examples">
+                <h3>Grundl&auml;ggande &ouml;versikt</h3>
+                <ul>
+                    <li>&quot;Ge mig en kort sammanfattning av l&auml;get p&aring; kontoret denna vecka &ndash; hur g&aring;r det f&ouml;r respektive m&auml;klare?&quot;</li>
+                    <li>&quot;Baserat p&aring; alla veckorapporter och f&ouml;rmedlingsdata &ndash; vad beh&ouml;ver min omedelbara uppm&auml;rksamhet som kontorschef? Prioritera fr&aring;n viktigast till minst viktigt&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>F&ouml;rmedling och marknad</h3>
+                <ul>
+                    <li>&quot;Vilka m&auml;klare har flest p&aring;g&aring;ende objekt och vilka beh&ouml;ver fler intagsm&ouml;ten? Var ser du obalans?&quot;</li>
+                    <li>&quot;Hur ser f&ouml;rs&auml;ljningstiderna ut j&auml;mf&ouml;rt med f&ouml;rra veckan? Finns det objekt som legat f&ouml;r l&auml;nge?&quot;</li>
+                    <li>&quot;Vilka omr&aring;den presterar b&auml;st just nu och var ser du potential?&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>Personalfr&aring;gor</h3>
+                <ul>
+                    <li>&quot;Vilka m&auml;klare verkar beh&ouml;va st&ouml;d just nu, och p&aring; vilket s&auml;tt? Basera p&aring; b&aring;de vad de skriver och hur deras siffror ser ut&quot;</li>
+                    <li>&quot;Sara rapporterar att hon k&auml;nner sig &ouml;verbelastad. Hur ser hennes arbetsbelastning ut j&auml;mf&ouml;rt med de andra? Vad kan jag g&ouml;ra?&quot;</li>
+                    <li>&quot;Jag ska ha individuellt samtal med Johan imorgon. Baserat p&aring; hans rapport och f&ouml;rmedlingsresultat &ndash; vad b&ouml;r jag ta upp? Ge mig 3&ndash;5 diskussionspunkter&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>Marknadsf&ouml;ring och synlighet</h3>
+                <ul>
+                    <li>&quot;Vilka objekt har f&aring;tt flest visningar vs f&auml;rrst? Finns det m&ouml;nster i hur vi marknadsf&ouml;r dem?&quot;</li>
+                    <li>&quot;Baserat p&aring; rapporterna &ndash; hur kan vi f&ouml;rb&auml;ttra v&aring;r n&auml;rvaro p&aring; Hemnet och sociala medier?&quot;</li>
+                    <li>&quot;Vilka kundsegment (f&ouml;rstagångsk&ouml;pare, uppgraderare, seniorer) verkar mest aktiva just nu?&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>Operativa fr&aring;gor</h3>
+                <ul>
+                    <li>&quot;Ge mig en &ouml;versikt &ouml;ver pipelinen: Hur m&aring;nga intag, p&aring;g&aring;ende f&ouml;rs&auml;ljningar och avslut har vi just nu?&quot;</li>
+                    <li>&quot;N&aring;gra m&auml;klare rapporterar problem med fotograferingstider och homestaging. &Auml;r det systemproblem eller isolerade h&auml;ndelser?&quot;</li>
+                    <li>&quot;Hur ser v&aring;r kapacitet ut &ndash; kan vi ta emot fler intagsuppdrag eller beh&ouml;ver vi avlasta n&aring;gon?&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>Konkreta output</h3>
+                <ul>
+                    <li>&quot;Skriv ett uppmuntrande men konstruktivt mail till Marcus som k&auml;mpar med l&aring;ga visningssiffror. Visa att jag f&ouml;rst&aring;r marknaden men vill hj&auml;lpa honom framåt&quot;</li>
+                    <li>&quot;Baserat p&aring; alla rapporter &ndash; skapa en prioriterad &aring;tg&auml;rdslista f&ouml;r mig som kontorschef f&ouml;r n&auml;sta tv&aring; veckor&quot;</li>
+                    <li>&quot;Vad g&aring;r riktigt bra just nu som jag b&ouml;r lyfta fram p&aring; m&aring;ndagens kontorsm&ouml;te?&quot;</li>
+                </ul>
+            </div>
+
+            <div class="examples">
+                <h3>Kritiskt t&auml;nkande</h3>
+                <ul>
+                    <li>&quot;Finns det diskrepanser mellan vad m&auml;klarna rapporterar och vad f&ouml;rmedlingssiffrorna visar?&quot;</li>
+                    <li>&quot;Vilka risker ser du baserat p&aring; rapporterna? Vad kan g&aring; fel om jag inte agerar?&quot;</li>
+                    <li>&quot;Om nuvarande trender forts&auml;tter &ndash; n&aring;r vi v&aring;rt kvartalsm&aring;l? Vad b&ouml;r jag g&ouml;ra NU f&ouml;r att p&aring;verka det?&quot;</li>
+                </ul>
+            </div>
+
+            <div class="note-box" style="margin-top: 40px;">
+                <strong>Tips:</strong> B&ouml;rja med grundl&auml;ggande fr&aring;gor f&ouml;r att bygga f&ouml;rtroende, sedan testa mer komplexa analyser. Du kan alltid st&auml;lla f&ouml;ljdfr&aring;gor f&ouml;r att f&ouml;rdjupa: &quot;F&ouml;rklara mer om varf&ouml;r du tror Sara beh&ouml;ver avlastning&quot; eller &quot;Kan du ge konkreta exempel fr&aring;n rapporterna som st&ouml;der din analys?&quot;
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong>Viktigt om GDPR:</strong> Ladda aldrig upp k&auml;nsliga personuppgifter (personnummer, l&ouml;ner, medicinska detaljer) i AI-verktyg. Demofilerna &auml;r fiktiva och s&auml;kra att anv&auml;nda. N&auml;r du testar med egna filer, anonymisera alltid k&auml;nslig data f&ouml;rst.
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>We Should Be Friends AB</strong></p>
+        <p>AI-konsultation f&ouml;r svenska organisationer</p>
+    </div>
+
+    <script>
+        function showTab(platform) {
+            document.querySelectorAll('.tab-content').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(platform + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
