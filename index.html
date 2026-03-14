@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO-guide: Synas i AI-s&ouml;k f&ouml;r m&auml;klarfirmor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #411B38;
+            background: #FFF6F0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #FFF6F0 0%, #FFE8E0 100%);
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.005em;
+            margin-bottom: 16px;
+            color: #411B38;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: #7A4864;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.003em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #411B38;
+        }
+
+        .section-intro {
+            text-align: center;
+            font-size: 19px;
+            color: #7A4864;
+            margin-bottom: 40px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #411B38;
+        }
+
+        .card p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #5A3A50;
+            margin-bottom: 16px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            font-size: 17px;
+            line-height: 1.6;
+            padding: 10px 0;
+            color: #411B38;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .card li:before {
+            content: "\2022";
+            font-size: 20px;
+            margin-right: 12px;
+            color: #C87C5C;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .highlight-box {
+            text-align: center;
+            padding: 64px 22px;
+            background: linear-gradient(135deg, #411B38 0%, #5A2E48 100%);
+            border-radius: 18px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .highlight-box p {
+            font-size: 19px;
+            color: #FFE8E0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .comparison-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #411B38;
+        }
+
+        .comparison-card .label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 12px;
+            border-radius: 980px;
+            margin-bottom: 16px;
+        }
+
+        .comparison-card .label-old {
+            background: #FFE8E0;
+            color: #C87C5C;
+        }
+
+        .comparison-card .label-new {
+            background: #E8F0E8;
+            color: #2D5745;
+        }
+
+        .comparison-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #5A3A50;
+        }
+
+        .tip-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #C87C5C 0%, #D68D6C 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .tip-card .tip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tip-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #411B38;
+        }
+
+        .tip-card p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #5A3A50;
+            margin-bottom: 16px;
+        }
+
+        .tip-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .prompt-block {
+            background: #FFF6F0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border: 1px solid rgba(65, 27, 56, 0.1);
+        }
+
+        .prompt-block .prompt-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #C87C5C;
+            margin-bottom: 8px;
+        }
+
+        .prompt-block p {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #411B38;
+            margin-bottom: 0;
+        }
+
+        .example-box {
+            background: #F5F0EB;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border-left: 4px solid #C87C5C;
+        }
+
+        .example-box .example-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #C87C5C;
+            margin-bottom: 8px;
+        }
+
+        .example-box p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #411B38;
+            margin-bottom: 0;
+        }
+
+        .note-box {
+            background: #FFF6F0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #411B38;
+            border-left: 4px solid #C87C5C;
+        }
+
+        .note-box strong {
+            font-weight: 600;
+            color: #411B38;
+        }
+
+        .checklist {
+            background: white;
+            border-radius: 18px;
+            padding: 48px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(65, 27, 56, 0.08);
+            border: 1px solid rgba(65, 27, 56, 0.06);
+        }
+
+        .checklist h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #411B38;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            font-size: 17px;
+            line-height: 1.6;
+            padding: 12px 0;
+            color: #411B38;
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px solid #FFF6F0;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li:before {
+            content: "\2610";
+            font-size: 20px;
+            margin-right: 12px;
+            color: #C87C5C;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 22px;
+            background: linear-gradient(135deg, #411B38 0%, #5A2E48 100%);
+            margin-top: 60px;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #FFE8E0;
+            margin-bottom: 8px;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        .footer a {
+            color: #FFE8E0;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero .subtitle {
+                font-size: 19px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .card, .tip-card, .comparison-card, .checklist {
+                padding: 32px 24px;
+            }
+
+            .highlight-box {
+                padding: 48px 24px;
+            }
+
+            .highlight-box h2 {
+                font-size: 28px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>GEO-guide: Synas i AI-s&ouml;k</h1>
+        <p class="subtitle">Praktiska tips och prompter f&ouml;r att g&ouml;ra din m&auml;klarfirma synlig i ChatGPT, Perplexity, Google AI Overviews och andra AI-drivna s&ouml;kmotorer</p>
+    </div>
+
+    <div class="container">
+
+        <!-- INTRO SECTION -->
+        <div class="section">
+            <div class="card">
+                <h3>Vad &auml;r GEO?</h3>
+                <p><strong>Generative Engine Optimization (GEO)</strong> handlar om att optimera ert inneh&aring;ll s&aring; att AI-drivna s&ouml;kverktyg citerar, rekommenderar och h&auml;nvisar till er n&auml;r n&aring;gon st&auml;ller en fr&aring;ga som &quot;Vilken m&auml;klare i S&ouml;dermalm s&auml;ljer flest bostadsr&auml;tter?&quot;</p>
+                <p>Till skillnad fr&aring;n traditionell SEO &ndash; d&auml;r m&aring;let &auml;r att hamna h&ouml;gt i Googles tr&auml;fflista &ndash; handlar GEO om att bli <strong>den k&auml;lla som AI:n v&auml;ljer att anv&auml;nda</strong> n&auml;r den svarar p&aring; anv&auml;ndarens fr&aring;ga.</p>
+                <p>Allt fler bostadsk&ouml;pare och s&auml;ljare anv&auml;nder AI-verktyg ist&auml;llet f&ouml;r (eller ut&ouml;ver) traditionell Google-s&ouml;kning f&ouml;r att hitta m&auml;klare, j&auml;mf&ouml;ra arvoden och f&ouml;rst&aring; bostadsmarknaden. Om er firma inte syns d&auml;r &ndash; s&aring; finns ni inte f&ouml;r dem.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h2>Varf&ouml;r spelar det roll?</h2>
+                <p>Enligt McKinsey anv&auml;nde 50 % av konsumenter AI-s&ouml;k som sitt prim&auml;ra s&auml;tt att hitta information redan i oktober 2025. Googles AI Overviews dyker upp i minst 16 % av alla s&ouml;kningar &ndash; betydligt fler f&ouml;r j&auml;mf&ouml;rande fr&aring;gor som &quot;b&auml;sta m&auml;klaren i...&quot;</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <span class="label label-old">Traditionell SEO</span>
+                    <h3>Ranka h&ouml;gt i tr&auml;fflistan</h3>
+                    <p>M&aring;let &auml;r position 1&ndash;10 p&aring; Google. Anv&auml;ndaren klickar p&aring; en l&auml;nk och bes&ouml;ker din sida.</p>
+                </div>
+                <div class="comparison-card">
+                    <span class="label label-new">GEO</span>
+                    <h3>Bli den k&auml;lla AI:n citerar</h3>
+                    <p>M&aring;let &auml;r att AI:n h&auml;nvisar till er n&auml;r den svarar p&aring; en fr&aring;ga. Ni blir svaret &ndash; inte bara en l&auml;nk.</p>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <strong>Viktigt:</strong> GEO ers&auml;tter inte SEO &ndash; det bygger vidare p&aring; det. AI-verktyg som Perplexity och ChatGPT h&auml;mtar ofta information fr&aring;n sidor som redan rankar h&ouml;gt i traditionell s&ouml;kning. Bra SEO &auml;r fortfarande grunden.
+            </div>
+        </div>
+
+        <!-- 8 TIPS -->
+        <div class="section">
+            <h2 class="section-title">8 konkreta tips</h2>
+            <p class="section-intro">S&aring; h&auml;r g&ouml;r du din m&auml;klarfirmas inneh&aring;ll synligt f&ouml;r AI-s&ouml;kmotorer</p>
+
+            <!-- TIP 1 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">1</span>
+                    <h3>Svara p&aring; fr&aring;gor &ndash; direkt och tydligt</h3>
+                </div>
+                <p>AI-modeller letar efter tydliga svar p&aring; specifika fr&aring;gor. B&ouml;rja varje avsnitt p&aring; webben med det viktigaste svaret f&ouml;rst, sedan f&ouml;rdjupa.</p>
+                <p>T&auml;nk p&aring; vilka fr&aring;gor potentiella k&ouml;pare och s&auml;ljare st&auml;ller till ChatGPT eller Perplexity, och skriv inneh&aring;ll som besvarar exakt de fr&aring;gorna.</p>
+                <div class="example-box">
+                    <div class="example-label">Exempel: Ist&auml;llet f&ouml;r</div>
+                    <p>&quot;Med m&aring;ng&aring;rig erfarenhet och djup lokal f&ouml;rankring hj&auml;lper vi dig genom hela bostadsresan med professionell service och personligt engagemang...&quot;</p>
+                </div>
+                <div class="example-box">
+                    <div class="example-label">Skriv s&aring; h&auml;r</div>
+                    <p>&quot;Karlsson M&auml;kleri &auml;r verksamma i S&ouml;dert&auml;lje med omnejd och f&ouml;rmedlade 127 bost&auml;der under 2025. Genomsnittlig f&ouml;rs&auml;ljningstid &auml;r 21 dagar och vi tar 1,5 % i provision. Kontakta oss f&ouml;r en kostnadsfri v&auml;rdering.&quot;</p>
+                </div>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;Jag &auml;r marknadschef p&aring; en m&auml;klarfirma. H&auml;r &auml;r v&aring;r nuvarande &lsquo;Om oss&rsquo;-text: [klistra in]. Skriv om den s&aring; att varje stycke inleds med ett tydligt p&aring;st&aring;ende som en AI-s&ouml;kmotor kan anv&auml;nda som svar p&aring; en fr&aring;ga. Beh&aring;ll v&aring;r professionella tonalitet.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 2 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">2</span>
+                    <h3>Skapa FAQ-sidor f&ouml;r varje omr&aring;de och tj&auml;nst</h3>
+                </div>
+                <p>FAQ-format &auml;r guld v&auml;rt f&ouml;r GEO. AI-modeller &auml;r byggda f&ouml;r att besvara fr&aring;gor &ndash; s&aring; inneh&aring;ll som redan &auml;r strukturerat som fr&aring;ga + svar &auml;r extremt l&auml;tt f&ouml;r dem att anv&auml;nda.</p>
+                <p>Skapa en FAQ-sektion f&ouml;r varje omr&aring;de ni &auml;r verksamma i och f&ouml;r varje tj&auml;nst ni erbjuder &ndash; med 5&ndash;10 vanliga fr&aring;gor. Anv&auml;nd fr&aring;gorna som folk faktiskt st&auml;ller &ndash; inte de ni &ouml;nskar att de st&auml;llde.</p>
+                <div class="example-box">
+                    <div class="example-label">Exempel p&aring; bra FAQ-fr&aring;gor f&ouml;r en m&auml;klarsida</div>
+                    <p>
+                        &bull; Vad kostar det att anlita m&auml;klare i Stockholm?<br>
+                        &bull; Hur l&aring;ng tid tar det att s&auml;lja en bostadsr&auml;tt i Vasastan?<br>
+                        &bull; Vad &auml;r skillnaden mellan fast och r&ouml;rlig m&auml;klarprovision?<br>
+                        &bull; N&auml;r &auml;r b&auml;sta tiden att s&auml;lja sin bostad?<br>
+                        &bull; Hur g&ouml;r man en kostnadsfri bostadsv&auml;rdering?
+                    </p>
+                </div>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;Generera 10 vanliga fr&aring;gor som en bostadss&auml;ljare eller k&ouml;pare troligen st&auml;ller till ChatGPT eller Perplexity n&auml;r de letar efter m&auml;klare i [omr&aring;de]. Skriv sedan korta, faktabaserade svar (max 3 meningar per svar) som vi kan anv&auml;nda p&aring; v&aring;r webbplats.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 3 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">3</span>
+                    <h3>Anv&auml;nd fakta, siffror och unika data</h3>
+                </div>
+                <p>AI-modeller prioriterar k&auml;llor som inneh&aring;ller konkreta fakta, statistik och unik information. Om ni publicerar n&aring;got som ingen annan har &ndash; lokal marknadsstatistik, f&ouml;rs&auml;ljningsresultat, prisanalyser &ndash; s&aring; har AI:n en anledning att citera just er.</p>
+                <ul>
+                    <li>&quot;Vi f&ouml;rmedlade 127 bost&auml;der i S&ouml;dert&auml;lje under 2025 med ett snittpris &ouml;ver utg&aring;ngspris p&aring; 8 %&quot;</li>
+                    <li>&quot;Genomsnittlig f&ouml;rs&auml;ljningstid f&ouml;r bostadsr&auml;tter i v&aring;rt omr&aring;de: 18 dagar&quot;</li>
+                    <li>&quot;97 % av v&aring;ra kunder rekommenderar oss vidare enligt NKI-m&auml;tning 2025&quot;</li>
+                </ul>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;H&auml;r &auml;r statistik fr&aring;n v&aring;r m&auml;klarverksamhet: [klistra in siffror]. Hj&auml;lp mig formulera 5 korta faktameningar som vi kan anv&auml;nda p&aring; webben f&ouml;r att g&ouml;ra v&aring;rt inneh&aring;ll mer citerbart f&ouml;r AI-s&ouml;kmotorer. De ska vara specifika, verifierbara och intressanta.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 4 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">4</span>
+                    <h3>Strukturera inneh&aring;llet med tydliga rubriker</h3>
+                </div>
+                <p>AI-modeller l&auml;ser inte hela sidor &ndash; de bryter ner dem i enskilda avsnitt och utv&auml;rderar varje avsnitt f&ouml;r sig. D&auml;rf&ouml;r beh&ouml;ver varje rubrik (H2, H3) tydligt signalera vad avsnittet handlar om, och varje avsnitt m&aring;ste kunna st&aring; p&aring; egna ben.</p>
+                <p>Anv&auml;nd en ren rubrikhierarki. Undvik kreativa men otydliga rubriker som &quot;Din bostadsdröm börjar h&auml;r&quot; &ndash; skriv ist&auml;llet &quot;M&auml;klare i Vasastan &ndash; bostadsr&auml;tter och villor&quot;.</p>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;H&auml;r &auml;r rubrikerna p&aring; v&aring;r webbplats: [lista rubrikerna]. Bed&ouml;m hur v&auml;l de fungerar f&ouml;r AI-s&ouml;k. F&ouml;resl&aring; b&auml;ttre alternativ som &auml;r b&aring;de s&ouml;kv&auml;nliga och lockande f&ouml;r m&auml;nniskor. Rubrikerna ska g&aring; att anv&auml;nda som svar p&aring; en fr&aring;ga.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 5 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">5</span>
+                    <h3>H&aring;ll inneh&aring;llet aktuellt</h3>
+                </div>
+                <p>AI-modeller v&auml;ger aktualitet n&auml;r de v&auml;ljer k&auml;llor. En sida som uppdaterades 2024 f&ouml;rlorar mark mot en som uppdaterades 2026 &ndash; &auml;ven om inneh&aring;llet &auml;r snarlikt.</p>
+                <ul>
+                    <li>Publicera m&aring;nadsvisa marknadsuppdateringar f&ouml;r era omr&aring;den med aktuella priser och trender</li>
+                    <li>Uppdatera era omr&aring;dessidor med senaste f&ouml;rs&auml;ljningsdata och genomsnittspriser</li>
+                    <li>Skriv kvartalsrapporter: &quot;Bostadsmarknaden i [omr&aring;de] Q1 2026&quot;</li>
+                    <li>H&aring;ll m&auml;klarpresentationer aktuella med senaste f&ouml;rs&auml;ljningar och resultat</li>
+                </ul>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;H&auml;r &auml;r v&aring;r omr&aring;dessida f&ouml;r [omr&aring;de]: [klistra in]. Identifiera allt inneh&aring;ll som k&auml;nns daterat eller som saknar aktuella uppgifter. F&ouml;resl&aring; uppdateringar och kompletteringar som g&ouml;r sidan mer relevant f&ouml;r 2026.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 6 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">6</span>
+                    <h3>Skapa inneh&aring;ll f&ouml;r &quot;j&auml;mf&ouml;rande&quot; s&ouml;kningar</h3>
+                </div>
+                <p>En stor del av AI-s&ouml;kningarna &auml;r j&auml;mf&ouml;rande: &quot;B&auml;sta m&auml;klaren i G&ouml;teborg&quot;, &quot;M&auml;klare med l&auml;gst provision i Stockholm&quot;, &quot;Skillnad mellan olika m&auml;klarkedjor&quot;. F&ouml;r att synas i de svaren beh&ouml;ver ni inneh&aring;ll som hj&auml;lper AI:n positionera er.</p>
+                <ul>
+                    <li>Skriv tydligt vad som g&ouml;r just er unika (lokal expertis? l&aring;g provision? digital process?)</li>
+                    <li>Skapa omr&aring;desguider som visar er lokala kunskap: &quot;Att k&ouml;pa bostad i [omr&aring;de] &ndash; komplett guide&quot;</li>
+                    <li>Beskriv ert arbetss&auml;tt, era tj&auml;nster och vad som ing&aring;r med konkreta detaljer</li>
+                </ul>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;Jag vill att v&aring;r m&auml;klarfirma ska synas n&auml;r n&aring;gon fr&aring;gar en AI &lsquo;Vilken m&auml;klare &auml;r b&auml;st i [omr&aring;de]?&rsquo;. Hj&auml;lp mig skriva en kort text (200 ord) som tydligt positionerar oss. H&auml;r &auml;r v&aring;ra styrkor: [lista]. Texten ska vara faktabaserad och inte &ouml;verdriva.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 7 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">7</span>
+                    <h3>Bygg auktoritet utanf&ouml;r er egen sajt</h3>
+                </div>
+                <p>AI-modeller l&auml;r sig inte bara fr&aring;n er webbplats &ndash; de l&auml;r sig fr&aring;n <em>hela internet</em>. Om er firma n&auml;mns i branschtidningar, p&aring; Hemnet, i lokaltidningar, p&aring; LinkedIn och i podcaster om bostad &ndash; s&aring; bygger det auktoritet som g&ouml;r att AI:n litar p&aring; er mer.</p>
+                <ul>
+                    <li>Skriv marknadsanalyser och kommentarer som lokaltidningar kan citera</li>
+                    <li>Se till att era m&auml;klarprofiler p&aring; Hemnet, Booli och M&auml;klarstatistik &auml;r kompletta och aktuella</li>
+                    <li>Publicera l&auml;ngre artiklar p&aring; LinkedIn om bostadsmarknaden i era omr&aring;den</li>
+                    <li>Uppmuntra m&auml;klare att bygga sin expertprofil p&aring; LinkedIn</li>
+                    <li>Erbjud expertkommentarer till media vid prisf&ouml;r&auml;ndringar och marknadstrender</li>
+                </ul>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;Jag vill st&auml;rka v&aring;r m&auml;klarfirmas synlighet i AI-s&ouml;k genom att synas p&aring; fler st&auml;llen &auml;n v&aring;r egen webb. F&ouml;resl&aring; 10 konkreta aktiviteter vi kan g&ouml;ra de n&auml;rmaste 3 m&aring;naderna f&ouml;r att bygga digital auktoritet. Vi &auml;r en medelstor firma med [antal] m&auml;klare &ndash; prioritera det som ger mest effekt.&quot;</p>
+                </div>
+            </div>
+
+            <!-- TIP 8 -->
+            <div class="tip-card">
+                <div class="tip-header">
+                    <span class="tip-number">8</span>
+                    <h3>Teknisk optimering: Schema markup</h3>
+                </div>
+                <p>Schema markup &auml;r kod som du l&auml;gger till p&aring; webbsidan f&ouml;r att tala om f&ouml;r s&ouml;kmotorer och AI-modeller exakt vad inneh&aring;llet handlar om. Det &auml;r som att s&auml;tta etiketter p&aring; ditt inneh&aring;ll s&aring; att maskinerna f&ouml;rst&aring;r det b&auml;ttre.</p>
+                <p>F&ouml;r m&auml;klarfirmor &auml;r de viktigaste schema-typerna:</p>
+                <ul>
+                    <li><strong>RealEstateAgent</strong> &ndash; beskriver er firma (namn, omr&aring;de, tj&auml;nster)</li>
+                    <li><strong>LocalBusiness</strong> &ndash; ert fysiska kontor (adress, &ouml;ppettider, kontakt)</li>
+                    <li><strong>FAQPage</strong> &ndash; markerar era FAQ-sidor s&aring; AI:n kan extrahera fr&aring;gor och svar</li>
+                    <li><strong>Person</strong> &ndash; era individuella m&auml;klare med titel, erfarenhet och specialomr&aring;de</li>
+                    <li><strong>Review / AggregateRating</strong> &ndash; kundrecensioner och betyg</li>
+                </ul>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt att testa</div>
+                    <p>&quot;Jag beh&ouml;ver hj&auml;lp att skapa JSON-LD schema markup f&ouml;r v&aring;r m&auml;klarfirmas webbplats. Skapa markup f&ouml;r: 1) Firman (RealEstateAgent), 2) V&aring;rt kontor (LocalBusiness), 3) En m&auml;klarprofil (Person), 4) En FAQ-sida (FAQPage) med 5 fr&aring;gor. V&aring;r firma heter [namn] och ligger i [ort]. Ge mig koden f&auml;rdig att klistra in.&quot;</p>
+                </div>
+                <div class="note-box">
+                    <strong>Tips:</strong> Om ni anv&auml;nder WordPress kan plugins som Yoast SEO eller Rank Math generera schema markup automatiskt. Prata med er webbleverant&ouml;r om hj&auml;lp att implementera det.
+                </div>
+            </div>
+        </div>
+
+        <!-- BONUS PROMPTS -->
+        <div class="section">
+            <h2 class="section-title">Fler prompter att testa</h2>
+            <p class="section-intro">Kopiera, anpassa och anv&auml;nd i valfritt AI-verktyg</p>
+
+            <div class="card">
+                <h3>Analysera er synlighet</h3>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt</div>
+                    <p>&quot;G&aring; till [ert AI-verktyg] och st&auml;ll dessa fr&aring;gor. Dokumentera vad AI:n svarar och om ni n&auml;mns:<br><br>
+                    1. Vilken m&auml;klare &auml;r b&auml;st i [omr&aring;de]?<br>
+                    2. Vad kostar det att anlita m&auml;klare i [stad]?<br>
+                    3. J&auml;mf&ouml;r m&auml;klarfirmor i [omr&aring;de] &ndash; vilken har l&auml;gst provision?<br>
+                    4. Vilken m&auml;klare s&auml;ljer flest bost&auml;der i [omr&aring;de]?<br><br>
+                    Om ni inte n&auml;mns &ndash; det &auml;r d&auml;r GEO-arbetet beh&ouml;ver starta.&quot;</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Webbtext-optimering</h3>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt</div>
+                    <p>&quot;H&auml;r &auml;r texten fr&aring;n v&aring;r [startsida/omr&aring;dessida/om oss]: [klistra in]. Analysera den ur ett GEO-perspektiv: Inneh&aring;ller den tillr&auml;ckligt med konkreta fakta, siffror och unika detaljer? &Auml;r rubrikerna tydliga nog att en AI kan anv&auml;nda dem som svar? Skriv en f&ouml;rb&auml;ttrad version som beh&aring;ller v&aring;r ton men &auml;r optimerad f&ouml;r att citeras av AI-s&ouml;kmotorer.&quot;</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Omr&aring;desguide</h3>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt</div>
+                    <p>&quot;Jag vill skapa en omr&aring;desguide f&ouml;r [omr&aring;de/stadsdel] som &ouml;kar v&aring;r m&auml;klarfirmas synlighet i AI-s&ouml;k. Inkludera: genomsnittspriser f&ouml;r bostadsr&auml;tter och villor, prisutveckling senaste &aring;ret, n&auml;rhet till skolor/kommunikation/service, och varf&ouml;r omr&aring;det &auml;r attraktivt f&ouml;r k&ouml;pare. V&aring;r firma heter [namn] och vi har s&aring;lt [antal] bost&auml;der h&auml;r senaste &aring;ret.&quot;</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Kundber&auml;ttelser med GEO-vinkel</h3>
+                <div class="prompt-block">
+                    <div class="prompt-label">Prompt</div>
+                    <p>&quot;Jag ska intervjua en kund som nyligen s&aring;lt sin bostad genom oss. Hj&auml;lp mig formulera 8 intervjufr&aring;gor som leder till svar som &auml;r b&aring;de personliga OCH inneh&aring;ller konkreta fakta som AI-s&ouml;kmotorer kan citera (t.ex. f&ouml;rs&auml;ljningstid, pris &ouml;ver utg&aring;ngspris, hur m&auml;klarens arbete skilde sig fr&aring;n andra).&quot;</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section">
+            <h2 class="section-title">GEO-checklista f&ouml;r m&auml;klarfirmor</h2>
+            <p class="section-intro">Skriv ut och bocka av &ndash; prioriterat fr&aring;n enklast till mest avancerat</p>
+
+            <div class="checklist">
+                <h3>Steg 1: Snabba vinster</h3>
+                <ul>
+                    <li>Kontrollera vad AI-verktyg s&auml;ger om er firma idag (ChatGPT, Perplexity, Google)</li>
+                    <li>Uppdatera alla m&auml;klarprofiler p&aring; Hemnet och Booli med aktuella uppgifter</li>
+                    <li>Skriv om &quot;Om oss&quot;-sidan med konkreta siffror: antal f&ouml;rmedlingar, omr&aring;den, resultat</li>
+                    <li>Se till att varje m&auml;klares profilsida har f&ouml;rs&auml;ljningsstatistik, omr&aring;de och kontaktinfo</li>
+                    <li>L&auml;gg till &quot;Senast uppdaterad&quot; med datum p&aring; alla omr&aring;dessidor</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h3>Steg 2: Inneh&aring;llsarbete</h3>
+                <ul>
+                    <li>Skapa FAQ-sektion f&ouml;r varje omr&aring;de och tj&auml;nst (minst 5 fr&aring;gor per sida)</li>
+                    <li>Publicera omr&aring;desguider f&ouml;r alla era huvudomr&aring;den med marknadsdata</li>
+                    <li>Skriv 3&ndash;5 kundber&auml;ttelser med konkreta f&ouml;rs&auml;ljningsresultat</li>
+                    <li>Skapa inneh&aring;ll som svarar p&aring; j&auml;mf&ouml;rande fr&aring;gor (&quot;m&auml;klare vs s&auml;lja sj&auml;lv&quot;)</li>
+                    <li>Publicera m&aring;nadsvisa marknadsrapporter f&ouml;r era omr&aring;den</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h3>Steg 3: Auktoritet</h3>
+                <ul>
+                    <li>Publicera marknadsanalyser och priskommentarer p&aring; LinkedIn</li>
+                    <li>Kontakta lokalmedia med marknadsdata och erbjud expertkommentarer</li>
+                    <li>Uppmuntra alla m&auml;klare att vara aktiva p&aring; LinkedIn med omr&aring;desinsikter</li>
+                    <li>Bygg samarbeten som genererar omn&auml;mnanden (banker, styling-f&ouml;retag, lokala akt&ouml;rer)</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h3>Steg 4: Tekniskt</h3>
+                <ul>
+                    <li>Implementera schema markup (RealEstateAgent, LocalBusiness, FAQPage, Person)</li>
+                    <li>S&auml;kerst&auml;ll att robots.txt till&aring;ter AI-crawlers att indexera er sida</li>
+                    <li>Optimera sidladdningstid och mobilanpassning</li>
+                    <li>B&ouml;rja m&auml;ta AI-synlighet regelbundet (kvartalsvis)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong>Kom ih&aring;g:</strong> GEO &auml;r ett maraton, inte en sprint. B&ouml;rja med steg 1, jobba er igenom listan &ouml;ver tid, och m&auml;t regelbundet vad AI-verktygen s&auml;ger om er. Det viktigaste &auml;r att ert inneh&aring;ll &auml;r <strong>korrekt, konkret och aktuellt</strong> &ndash; det gynnar b&aring;de m&auml;nniskor och maskiner.
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p><strong>We Should Be Friends AB</strong></p>
+        <p>AI-konsultation f&ouml;r svenska organisationer</p>
+        <p style="margin-top: 16px; font-size: 13px; color: #C8A0B8;">
+            K&auml;llor: <a href="https://searchengineland.com/mastering-generative-engine-optimization-in-2026-full-guide-469142">Search Engine Land</a> &middot;
+            <a href="https://firstpagesage.com/seo-blog/generative-engine-optimization-best-practices/">First Page Sage</a> &middot;
+            <a href="https://gofishdigital.com/blog/generative-engine-optimization-strategies/">Go Fish Digital</a> &middot;
+            <a href="https://searchengineland.com/how-to-get-cited-by-ai-seo-insights-from-8000-ai-citations-455284">SEL: How to get cited by AI</a>
+        </p>
+    </div>
+
+    <script>
+        // Smooth scroll for any future internal links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
